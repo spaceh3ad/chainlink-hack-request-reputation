@@ -10,7 +10,8 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
     uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18
     uint256 public reputation_data;
 
-    event RequestReputatation(address indexed _address, string indexed _chain);
+    event RequestReputatation(address indexed, string);
+    event FullFillRequest(uint256);
 
     /**
      *  KOVAN
@@ -33,7 +34,7 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
         );
         string memory uri = string(
             bytes.concat(
-                bytes("https://ormi.herokuapp.com/data?"),
+                bytes("https://chainlink-hack-api.herokuapp.com/api/"),
                 bytes(_query)
             )
         );
@@ -50,6 +51,7 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
         recordChainlinkFulfillment(_requestId)
     {
         reputation_data = _reputation_data;
+        emit FullFillRequest(_reputation_data);
     }
 
     function getChainlinkToken() public view returns (address) {

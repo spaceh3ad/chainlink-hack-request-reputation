@@ -2,7 +2,7 @@ from brownie import APIConsumer, config, network, accounts, interface
 from web3 import Web3
 
 # https://ormi.herokuapp.com/data?
-query = "id=0x2&type=ETH"
+query = "reputation/eth/0xF444A6B13c63999639dF53c1DB10bD59e3048b3e"
 
 
 def deploy_contract():
