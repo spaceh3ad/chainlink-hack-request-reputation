@@ -1,0 +1,20 @@
+dependencies:
+  - smartcontractkit/chainlink-brownie-contracts@0.3.1
+compiler:
+  solc:
+    remappings:
+      - "@chainlink=smartcontractkit/chainlink-brownie-contracts@0.3.1"
+dotenv: .env
+networks:
+  default: kovan
+  kovan:
+    link: "0xa36085F69e2889c224210F603D836748e7dC0088"
+    verify: True
+    oracle: "0x070FaaC855E349fE4c53380eC17127A658988e81"
+    jobId: "c4fdfec200324cdd91295dd28dbe9f65"
+    fee: 100000000000000000
+wallets:
+  from_key: ${PRIVATE_KEY}
+  from_mnemonic: ${MNEMONIC}
+
+  # to launch ganache-cli -m "$(cat .secret)"
