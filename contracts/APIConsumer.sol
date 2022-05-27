@@ -4,7 +4,7 @@ pragma solidity ^0.8.7;
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 
-contract ATestnetConsumer is ChainlinkClient, ConfirmedOwner {
+contract APIConsumer is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
     uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18
@@ -21,7 +21,7 @@ contract ATestnetConsumer is ChainlinkClient, ConfirmedOwner {
         setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
     }
 
-    function requestEthereumPrice(
+    function requestReputationData(
         address _oracle,
         string memory _jobId,
         string memory _query

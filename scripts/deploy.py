@@ -9,18 +9,19 @@ def deploy_contract():
     account = accounts.add(config["wallets"]["from_key"])
 
     api = APIConsumer.deploy(
-        config["networks"][network.show_active()]["oracle"],
-        config["networks"][network.show_active()]["jobId"],
-        config["networks"][network.show_active()]["fee"],
-        config["networks"][network.show_active()]["link"],
         {"from": account},
         publish_source=config["networks"][network.show_active()]["verify"],
     )
 
     link = interface.IERC20(config["networks"][network.show_active()]["link"])
-    link.transfer(api, Web3.toWei(2, "ether"), {"from": account})
+    link.transfer(api, Web3.toWei(5, "ether"), {"from": account})
 
-    api.requestReputationData(query, {"from": account})
+    api.requestReputationData(
+        config["networks"][network.show_active()]["oracle"],
+        config["networks"][network.show_active()]["jobId"],
+        query,
+        {"from": account},
+    )
 
 
 def main():
